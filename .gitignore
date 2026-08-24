@@ -24,8 +24,7 @@ dist-ssr
 .env
 .env.development
 .env.production
-.env.9router
-!.env.example
+.env.llm-gateway
 
 # Claude Code local settings (contains gateway API key)
 .claude/settings.local.json

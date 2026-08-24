@@ -1,7 +1,9 @@
-# Fund Navigator
+# Rishi notes
 
-Fund Navigator is a TanStack Start application for researching and comparing
-mutual funds.
+Rishi notes ([rishi10ai.com](https://rishi10ai.com)) is a personal blog and
+research notebook built with TanStack Start: stories, research notes, and a
+dreams page. Story posts are authored as Word documents and compiled into the
+site at build time.
 
 ## Development
 
@@ -20,56 +22,61 @@ npm run lint
 npm run format
 ```
 
-## Claude Code via 9router
+## Publishing a story
 
-Use this setup when Claude Code must be the LLM interface and every model call should
-flow through your running 9router endpoint.
+1. Create a folder `public/stories/<slug>/` containing `story.docx` (the story
+   text; paragraphs are preserved) and an `images/` folder with illustrations.
+2. Run `npm run build-stories` — it converts the DOCX to HTML, extracts the
+   images to `public/stories/<slug>`, and regenerates `src/generated/stories.ts`.
+3. The story appears on the landing page automatically. See
+   `.github/skills/story-content-upload/SKILL.md` for details.
 
-1. Copy `.env.9router.example` to `.env.9router`.
-2. Set `NINE_ROUTER_URL` to your running 9router Anthropic-compatible endpoint.
-3. Set `NINE_ROUTER_API_KEY` if your router requires auth.
-4. Run:
+## Claude Code: LLM gateway vs. native Anthropic
+
+Claude Code sessions launched from this folder can route model calls either through
+an LLM gateway (any Anthropic-compatible router, e.g. 9router) or directly through
+Anthropic with your normal claude.ai login. The global Claude CLI settings are never
+modified — only this project's local settings file changes.
+
+The active mode is whichever template is copied to `.claude/settings.local.json`
+(gitignored):
+
+- `.claude/settings.gateway.json` — routes every model call through the gateway
+  (`ANTHROPIC_BASE_URL`, `ANTHROPIC_API_URL`, `ANTHROPIC_API_KEY`, `ANTHROPIC_MODEL`)
+- `.claude/settings.anthropic.json` — empty env block; Claude Code uses native
+  Anthropic auth (claude.ai login or your own `ANTHROPIC_API_KEY`)
+
+Switch modes:
 
 ```powershell
-npm run claude:9router
+npm run claude:gateway    # route through the LLM gateway
+npm run claude:anthropic  # use native Anthropic / claude.ai login
 ```
 
-This command launches Claude Code after exporting these environment variables:
-
-- `ANTHROPIC_BASE_URL=<NINE_ROUTER_URL>`
-- `ANTHROPIC_API_URL=<NINE_ROUTER_URL>`
-- `ANTHROPIC_API_KEY=<NINE_ROUTER_API_KEY>` (when provided)
-- `ANTHROPIC_MODEL=<CLAUDE_CODE_MODEL>` (when provided)
-
-If your 9router health endpoint is not available at `/health`, the script continues after
-warning. To skip health checks entirely:
+Then start Claude Code normally from the project folder:
 
 ```powershell
-powershell -ExecutionPolicy Bypass -File ./scripts/start-claude-9router.ps1 -SkipHealthCheck
+claude
 ```
+
+First-time setup for gateway mode:
+
+1. Copy `.env.llm-gateway.example` to `.env.llm-gateway` and fill in your gateway
+   URL, API key, and default model.
+2. Put those values into a copy of `.claude/settings.gateway.json`, then activate it
+   with `npm run claude:gateway`.
+
+Note: switching takes effect on the next Claude Code launch — restart any running
+session after running one of the switch commands.
 
 ## Cloudflare Deployment
 
-Authenticate Wrangler, then configure the Worker with the AWS S3 connection:
-
 ```powershell
 npx wrangler login
-npx wrangler secret put AWS_ACCESS_KEY_ID
-npx wrangler secret put AWS_SECRET_ACCESS_KEY
-npx wrangler secret put AWS_REGION
-npx wrangler secret put AWS_S3_BUCKET
 npm run deploy
 ```
 
-The AWS identity needs `s3:ListBucket` on the bucket and `s3:GetObject` and
-`s3:PutObject` on the bucket objects. `HEAD` requests use the `s3:GetObject`
-permission.
-Use an IAM user or role dedicated to this application and keep its credentials
-in Wrangler secrets. Change the `name` in `wrangler.jsonc` if `fund-navigator`
-is already taken in your Cloudflare account.
-The Worker is named `mflens` to match this Fund Navigator deployment. Change
-the `name` in `wrangler.jsonc` only if that name is already
-taken in your Cloudflare account.
+The Worker name (`rishi10ai`) and custom domains live in `wrangler.jsonc`.
 
 - TanStack Start
 - TypeScript

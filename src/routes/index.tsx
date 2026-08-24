@@ -4,9 +4,9 @@ import { RishiLandingPage } from "@/components/landing/RishiLandingPage";
 
 const SITE = "https://rishi10ai.com";
 const OG_IMAGE = `${SITE}/og-cover.png`;
-const TITLE = "Rishi — Blogposts, Research and Fund Lens";
+const TITLE = "Rishi — Blogposts and Research";
 const DESC =
-  "Rishi's notebook for London journeys, airport research, dreams and RishiMFLens.";
+  "Rishi's notebook for London journeys, airport research and dreams still being written.";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -14,11 +14,7 @@ export const Route = createFileRoute("/")({
       { title: TITLE },
       { name: "description", content: DESC },
       { property: "og:title", content: TITLE },
-      {
-        property: "og:description",
-        content:
-          "Live NAV analytics that surface which equity funds beat a flat index, with alpha, drawdown and volatility for every sideways window.",
-      },
+      { property: "og:description", content: DESC },
       { property: "og:type", content: "website" },
       { property: "og:site_name", content: "Rishi notes" },
       { property: "og:url", content: SITE },
@@ -40,7 +36,6 @@ export const Route = createFileRoute("/")({
               alternateName: "Rishi's blog and research notebook",
               url: SITE,
               logo: OG_IMAGE,
-              email: "support@mutualfundlens.app",
               areaServed: "IN",
             },
             {
@@ -50,22 +45,6 @@ export const Route = createFileRoute("/")({
               name: "Rishi notes",
               inLanguage: "en-IN",
               publisher: { "@id": `${SITE}/#organization` },
-            },
-            {
-              "@type": "WebApplication",
-              name: "RishiMFLens",
-              url: "https://sandipprodhan.in",
-              applicationCategory: "FinanceApplication",
-              operatingSystem: "Web",
-              inLanguage: "en-IN",
-              description: DESC,
-              publisher: { "@id": `${SITE}/#organization` },
-              offers: {
-                "@type": "Offer",
-                price: "0",
-                priceCurrency: "INR",
-                description: "Free tier with sideways-phase fund rankings; paid plans add depth.",
-              },
             },
           ],
         }),

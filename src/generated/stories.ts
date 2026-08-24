@@ -20,10 +20,7 @@ export const STORIES: Story[] = [
     "images": [
       "/stories/the-refrigerator-hates-me/images/00-favourite-food.svg",
       "/stories/the-refrigerator-hates-me/images/00-midnight-kitchen.svg",
-      "/stories/the-refrigerator-hates-me/images/00-smart-fridge.svg",
-      "/stories/the-refrigerator-hates-me/images/01-midnight-kitchen.jpg",
-      "/stories/the-refrigerator-hates-me/images/02-smart-refrigerator.jpg",
-      "/stories/the-refrigerator-hates-me/images/03-late-night-snack.jpg"
+      "/stories/the-refrigerator-hates-me/images/02-smart-refrigerator.jpg"
     ]
   }
 ];

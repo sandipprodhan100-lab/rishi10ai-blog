@@ -20,6 +20,34 @@ npm run lint
 npm run format
 ```
 
+## Claude Code via 9router
+
+Use this setup when Claude Code must be the LLM interface and every model call should
+flow through your running 9router endpoint.
+
+1. Copy `.env.9router.example` to `.env.9router`.
+2. Set `NINE_ROUTER_URL` to your running 9router Anthropic-compatible endpoint.
+3. Set `NINE_ROUTER_API_KEY` if your router requires auth.
+4. Run:
+
+```powershell
+npm run claude:9router
+```
+
+This command launches Claude Code after exporting these environment variables:
+
+- `ANTHROPIC_BASE_URL=<NINE_ROUTER_URL>`
+- `ANTHROPIC_API_URL=<NINE_ROUTER_URL>`
+- `ANTHROPIC_API_KEY=<NINE_ROUTER_API_KEY>` (when provided)
+- `ANTHROPIC_MODEL=<CLAUDE_CODE_MODEL>` (when provided)
+
+If your 9router health endpoint is not available at `/health`, the script continues after
+warning. To skip health checks entirely:
+
+```powershell
+powershell -ExecutionPolicy Bypass -File ./scripts/start-claude-9router.ps1 -SkipHealthCheck
+```
+
 ## Cloudflare Deployment
 
 Authenticate Wrangler, then configure the Worker with the AWS S3 connection:

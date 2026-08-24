@@ -12,7 +12,8 @@
     "deploy:dry-run": "npm run build && wrangler deploy --dry-run --config wrangler.jsonc",
     "preview": "vite preview",
     "lint": "eslint .",
-    "format": "prettier --write ."
+    "format": "prettier --write .",
+    "claude:9router": "powershell -ExecutionPolicy Bypass -File ./scripts/start-claude-9router.ps1"
   },
   "dependencies": {
     "@ai-sdk/openai-compatible": "^3.0.30",

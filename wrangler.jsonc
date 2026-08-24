@@ -1,0 +1,15 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "rishi10ai",
+  "main": ".output/server/index.mjs",
+  "compatibility_date": "2026-08-19",
+  "compatibility_flags": ["nodejs_compat"],
+  "routes": [
+    { "pattern": "rishi10ai.com", "custom_domain": true },
+    { "pattern": "www.rishi10ai.com", "custom_domain": true }
+  ],
+  "assets": {
+    "binding": "ASSETS",
+    "directory": ".output/public"
+  }
+}

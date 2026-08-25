@@ -2,17 +2,6 @@ export type Story = { slug: string; title: string; author: string; body: string;
 
 export const STORIES: Story[] = [
   {
-    "slug": "the-clever-crow",
-    "title": "The Clever Crow",
-    "author": "Rishi",
-    "body": "So basically there was this crow who was absolutely parched. Like imagine being so thirsty that you'd try anything. He'd been flying around for hours looking for water and found literally nothing. The countryside was bone dry.\n\nThen he spots this pitcher in someone's garden and flies down to check it out. There's water at the bottom but here's the problem the neck is way too narrow for him to fit his head in. Classic.\n\nMost birds would just give up right? Not this guy. He sits there thinking and then it clicks. He flies off, finds some pebbles, and starts dropping them in one by one. Like seriously pebble after pebble after pebble. It takes forever and his wings are tired but he keeps going.\n\nSlowly the water starts rising. The pebbles push it up inch by inch until finally it reaches the top. The crow drinks his fill and flies away satisfied.\n\nNow here's what I think is actually genius about this story. The crow didn't use brute strength. He didn't give up. He used his brain to solve a problem that seemed impossible. That's literally what separates smart people from everyone else. When things get hard you don't just sit there complaining you figure it out.\n\nAlso there's this weird neighbor who kept watching the whole time and was like \"wow that bird is smarter than most people I know\" which honestly is probably true. Sometimes animals show us how dumb we can be.\n\nThe real lesson here is that persistence plus intelligence beats everything. You don't need to be the strongest or the fastest you just need to be the one who doesn't quit when things get tough. And always always always use your brain first.\n\nPretty simple story but it stuck with me. Maybe because I'm the kind of person who gives up too easily lol. Something to think about.",
-    "images": [
-      "/stories/the-clever-crow/images/01-thirsty-crow.svg",
-      "/stories/the-clever-crow/images/02-dropping-pebbles.svg",
-      "/stories/the-clever-crow/images/03-water-rises.svg"
-    ]
-  },
-  {
     "slug": "the-coordinate-of-autumn",
     "title": "The Coordinate of Autumn",
     "author": "Sapatarshi Dasprodhan",
@@ -21,6 +10,28 @@ export const STORIES: Story[] = [
       "/stories/the-coordinate-of-autumn/images/01-coastline.jpg",
       "/stories/the-coordinate-of-autumn/images/02-rain-window.jpg",
       "/stories/the-coordinate-of-autumn/images/03-autumn-path.jpg"
+    ]
+  },
+  {
+    "slug": "the-refrigerator-hates-me",
+    "title": "A Small Baby Who Wants to Eat His Favourite Foods at Midnight",
+    "author": "Saptarshi Dasprodhan and Arnesh Kanrar · Class IV, 2025",
+    "body": "It’s 3:00 AM, the house is still,\nI tiptoe past the sleeping sill,\nIn search of cheese, a midnight snack,\nA lonely hero in the dark.\nI crack the fridge, a blinding light,\nRevealing my pathetic plight,\nAnd out of nowhere, crisp and cold,\nThe smart-screen voice begins to scold.\n\nOh, my refrigerator hates me,\nIt judges every calorie!\nIt flashes red, it starts to hum,\nIt says, “Put down the cheddar, bum.”\nIt syncs my diet to my phone,\nAnd leaves me crying on my own,\nA Bluetooth tyrant in white steel,\nDenying me my healing meal!\n\nI reach for leftover cold pizza,\nThe kind that makes a sad man visa,\nThe fridge door slams with vicious force,\nAnd locks itself with firm remorse.\nA notification pings aloud:\n“Your cholesterol levels make me proud…\nPHYSCO! They’re terrible, you fool,\nGo drink some water from the pool.”\n\nI tried to reason with the ice,\nI offered snacks, I asked it nice.\n“Just give me ranch, just give me dip!”\nIt ordered kale on one-day ship.\nNow Siri is laughing from the hall,\nAnd Alexa joined the screaming match of all!\n\nOh, my refrigerator hates me,\nIt judges every calorie!\nIt flashes red, it starts to hum,\nIt says, “Put down the cheddar, bum.”\nIt syncs my diet to my phone,\nAnd leaves me crying on my own,\nA Bluetooth tyrant in white steel,\nDenying me my healing meal!\n\nDignity not found.\nPlease close the door.\nAnd maybe wear pants next time.",
+    "images": [
+      "/stories/the-refrigerator-hates-me/images/00-favourite-food.svg",
+      "/stories/the-refrigerator-hates-me/images/00-midnight-kitchen.svg",
+      "/stories/the-refrigerator-hates-me/images/02-smart-refrigerator.jpg"
+    ]
+  },
+  {
+    "slug": "the-clever-crow",
+    "title": "The Clever Crow",
+    "author": "Rishi",
+    "body": "So basically there was this crow who was absolutely parched. Like imagine being so thirsty that you'd try anything. He'd been flying around for hours looking for water and found literally nothing. The countryside was bone dry.\n\nThen he spots this pitcher in someone's garden and flies down to check it out. There's water at the bottom but here's the problem the neck is way too narrow for him to fit his head in. Classic.\n\nMost birds would just give up right? Not this guy. He sits there thinking and then it clicks. He flies off, finds some pebbles, and starts dropping them in one by one. Like seriously pebble after pebble after pebble. It takes forever and his wings are tired but he keeps going.\n\nSlowly the water starts rising. The pebbles push it up inch by inch until finally it reaches the top. The crow drinks his fill and flies away satisfied.\n\nNow here's what I think is actually genius about this story. The crow didn't use brute strength. He didn't give up. He used his brain to solve a problem that seemed impossible. That's literally what separates smart people from everyone else. When things get hard you don't just sit there complaining you figure it out.\n\nAlso there's this weird neighbor who kept watching the whole time and was like \"wow that bird is smarter than most people I know\" which honestly is probably true. Sometimes animals show us how dumb we can be.\n\nThe real lesson here is that persistence plus intelligence beats everything. You don't need to be the strongest or the fastest you just need to be the one who doesn't quit when things get tough. And always always always use your brain first.\n\nPretty simple story but it stuck with me. Maybe because I'm the kind of person who gives up too easily lol. Something to think about.",
+    "images": [
+      "/stories/the-clever-crow/images/01-thirsty-crow.svg",
+      "/stories/the-clever-crow/images/02-dropping-pebbles.svg",
+      "/stories/the-clever-crow/images/03-water-rises.svg"
     ]
   },
   {
@@ -43,17 +54,6 @@ export const STORIES: Story[] = [
       "/stories/the-monkey-and-the-crocodile/images/01-monkey-tree.svg",
       "/stories/the-monkey-and-the-crocodile/images/02-crocodile-river.svg",
       "/stories/the-monkey-and-the-crocodile/images/03-monkey-escapes.svg"
-    ]
-  },
-  {
-    "slug": "the-refrigerator-hates-me",
-    "title": "A Small Baby Who Wants to Eat His Favourite Foods at Midnight",
-    "author": "Saptarshi Dasprodhan and Arnesh Kanrar · Class IV, 2025",
-    "body": "It’s 3:00 AM, the house is still,\nI tiptoe past the sleeping sill,\nIn search of cheese, a midnight snack,\nA lonely hero in the dark.\nI crack the fridge, a blinding light,\nRevealing my pathetic plight,\nAnd out of nowhere, crisp and cold,\nThe smart-screen voice begins to scold.\n\nOh, my refrigerator hates me,\nIt judges every calorie!\nIt flashes red, it starts to hum,\nIt says, “Put down the cheddar, bum.”\nIt syncs my diet to my phone,\nAnd leaves me crying on my own,\nA Bluetooth tyrant in white steel,\nDenying me my healing meal!\n\nI reach for leftover cold pizza,\nThe kind that makes a sad man visa,\nThe fridge door slams with vicious force,\nAnd locks itself with firm remorse.\nA notification pings aloud:\n“Your cholesterol levels make me proud…\nPHYSCO! They’re terrible, you fool,\nGo drink some water from the pool.”\n\nI tried to reason with the ice,\nI offered snacks, I asked it nice.\n“Just give me ranch, just give me dip!”\nIt ordered kale on one-day ship.\nNow Siri is laughing from the hall,\nAnd Alexa joined the screaming match of all!\n\nOh, my refrigerator hates me,\nIt judges every calorie!\nIt flashes red, it starts to hum,\nIt says, “Put down the cheddar, bum.”\nIt syncs my diet to my phone,\nAnd leaves me crying on my own,\nA Bluetooth tyrant in white steel,\nDenying me my healing meal!\n\nDignity not found.\nPlease close the door.\nAnd maybe wear pants next time.",
-    "images": [
-      "/stories/the-refrigerator-hates-me/images/00-favourite-food.svg",
-      "/stories/the-refrigerator-hates-me/images/00-midnight-kitchen.svg",
-      "/stories/the-refrigerator-hates-me/images/02-smart-refrigerator.jpg"
     ]
   }
 ];

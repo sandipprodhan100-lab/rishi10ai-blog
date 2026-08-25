@@ -6,10 +6,26 @@ import mammoth from "mammoth";
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const storiesRoot = path.join(root, "public", "stories");
 const outputPath = path.join(root, "src", "generated", "stories.ts");
+
+const STORY_ORDER = [
+  "the-coordinate-of-autumn",
+  "the-refrigerator-hates-me",
+  "the-clever-crow",
+  "the-gold-giving-serpent",
+  "the-monkey-and-the-crocodile",
+];
+
 const storySlugs = (await readdir(storiesRoot, { withFileTypes: true }))
   .filter((entry) => entry.isDirectory())
   .map((entry) => entry.name)
-  .sort();
+  .sort((a, b) => {
+    const ai = STORY_ORDER.indexOf(a);
+    const bi = STORY_ORDER.indexOf(b);
+    if (ai !== -1 && bi !== -1) return ai - bi;
+    if (ai !== -1) return -1;
+    if (bi !== -1) return 1;
+    return a.localeCompare(b);
+  });
 
 const stories = [];
 for (const slug of storySlugs) {

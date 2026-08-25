@@ -131,7 +131,22 @@ export function RishiLandingPage() {
                 A ten-year-old view of places that feel much bigger than a map.
               </p>
             </div>
-            <article className="grid overflow-hidden rounded-[1.5rem] border border-[#e8ded1] bg-[#fffaf3] lg:grid-cols-[0.9fr_1.1fr]">
+            <div className="lg:grid lg:grid-cols-[200px_1fr] lg:gap-8">
+              <nav className="mb-8 hidden lg:block">
+                <div className="sticky top-24">
+                  <p className="mb-3 text-xs font-bold uppercase tracking-[0.18em] text-[#ef6c3b]">Story Index</p>
+                  <ul className="space-y-2 text-sm font-semibold text-[#52717a]">
+                    <li><a href="#london-post" className="transition-colors hover:text-[#ef6c3b]">My London Journey</a></li>
+                    {STORIES.map((story) => (
+                      <li key={story.slug}>
+                        <a href={`#${story.slug}`} className="transition-colors hover:text-[#ef6c3b]">{story.title}</a>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </nav>
+              <div>
+            <article id="london-post" className="grid overflow-hidden rounded-[1.5rem] border border-[#e8ded1] bg-[#fffaf3] lg:grid-cols-[0.9fr_1.1fr]">
               <img
                 src={POSTS[0].image}
                 alt="London skyline and the River Thames"
@@ -153,6 +168,7 @@ export function RishiLandingPage() {
 
             {STORIES.map((story) => (
               <article
+                id={story.slug}
                 key={story.slug}
                 className="mt-12 overflow-hidden rounded-[1.5rem] border border-[#e8ded1] bg-[#fffaf3]"
               >
@@ -205,6 +221,8 @@ export function RishiLandingPage() {
                 )}
               </article>
             ))}
+              </div>
+            </div>
           </div>
         </section>
 

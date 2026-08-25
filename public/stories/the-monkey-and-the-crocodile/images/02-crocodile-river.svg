@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 400">
+  <defs>
+    <linearGradient id="sky2" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#87CEEB"/>
+      <stop offset="100%" stop-color="#B3E5FC"/>
+    </linearGradient>
+    <linearGradient id="water2" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#1E88E5"/>
+      <stop offset="100%" stop-color="#0D47A1"/>
+    </linearGradient>
+    <linearGradient id="croc" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#558B2F"/>
+      <stop offset="100%" stop-color="#33691E"/>
+    </linearGradient>
+    <filter id="ripple">
+      <feTurbulence type="fractalNoise" baseFrequency="0.03" numOctaves="3" result="noise"/>
+      <feDisplacementMap in="SourceGraphic" in2="noise" scale="3"/>
+    </filter>
+  </defs>
+  <rect width="600" height="400" fill="url(#sky2)"/>
+  <rect y="200" width="600" height="200" fill="url(#water2)"/>
+  <path d="M0 205 Q100 195 200 205 Q300 215 400 205 Q500 195 600 205 L600 215 Q500 205 400 215 Q300 225 200 215 Q100 205 0 215Z" fill="#42A5F5" opacity="0.4"/>
+  <path d="M0 220 Q80 212 160 220 Q240 228 320 220 Q400 212 480 220 Q560 228 600 222" stroke="#64B5F6" stroke-width="2" fill="none" opacity="0.5"/>
+  <path d="M220 230 Q300 218 380 230 Q460 242 540 230" stroke="#90CAF9" stroke-width="1.5" fill="none" opacity="0.3"/>
+  <ellipse cx="350" cy="280" rx="120" ry="30" fill="#33691E"/>
+  <ellipse cx="350" cy="278" rx="115" ry="28" fill="#558B2F"/>
+  <circle cx="250" cy="270" r="8" fill="#FDD835"/>
+  <circle cx="250" cy="270" r="3" fill="#000"/>
+  <circle cx="250" cy="270" r="1.5" fill="#F57F17"/>
+  <path d="M235 285 Q225 295 235 300 Q245 295 235 285Z" fill="#C62828"/>
+  <path d="M242 287 Q235 297 245 301 Q252 295 242 287Z" fill="#C62828"/>
+  <line x1="230" y1="290" x2="205" y2="285" stroke="#558B2F" stroke-width="3" stroke-linecap="round"/>
+  <line x1="230" y1="293" x2="200" y2="296" stroke="#558B2F" stroke-width="3" stroke-linecap="round"/>
+  <line x1="230" y1="296" x2="205" y2="308" stroke="#558B2F" stroke-width="3" stroke-linecap="round"/>
+  <path d="M350 280 L480 278 L510 288 L490 298 L350 290Z" fill="#1B5E20"/>
+  <path d="M480 278 Q510 272 520 280 Q510 288 480 278Z" fill="#33691E"/>
+  <path d="M220 230 Q215 225 220 220 Q225 225 220 230Z" fill="#64B5F6" opacity="0.4"/>
+  <path d="M240 235 Q235 230 240 225 Q245 230 240 235Z" fill="#64B5F6" opacity="0.3"/>
+  <path d="M230 228 Q225 223 230 218 Q235 223 230 228Z" fill="#64B5F6" opacity="0.35"/>
+  <path d="M480 280 Q475 275 480 270 Q485 275 480 280Z" fill="#64B5F6" opacity="0.4"/>
+  <path d="M500 285 Q495 280 500 275 Q505 280 500 285Z" fill="#64B5F6" opacity="0.3"/>
+</svg>

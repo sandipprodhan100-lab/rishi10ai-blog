@@ -1,4 +1,4 @@
-import { readdir, readFile, writeFile } from "node:fs/promises";
+import { readdir, readFile, writeFile, access } from "node:fs/promises";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import mammoth from "mammoth";
@@ -16,6 +16,14 @@ for (const slug of storySlugs) {
   const storyDirectory = path.join(storiesRoot, slug);
   const documentPath = path.join(storyDirectory, "story.docx");
   const imagesDirectory = path.join(storyDirectory, "images");
+
+  // Skip directories without story.docx (stories written directly to stories.ts)
+  try {
+    await access(documentPath);
+  } catch {
+    continue;
+  }
+
   const { value } = await mammoth.extractRawText({ path: documentPath });
   const paragraphs = value
     .split(/\r?\n\s*\r?\n/)

@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 400">
+  <defs>
+    <linearGradient id="sky8" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#FFF8E1"/>
+      <stop offset="100%" stop-color="#FFECB3"/>
+    </linearGradient>
+    <linearGradient id="gold1" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#FFD54F"/>
+      <stop offset="50%" stop-color="#FFC107"/>
+      <stop offset="100%" stop-color="#FFA000"/>
+    </linearGradient>
+    <radialGradient id="glow8" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0%" stop-color="#FFD54F" stop-opacity="0.6"/>
+      <stop offset="100%" stop-color="#FFD54F" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="shine">
+      <feGaussianBlur stdDeviation="2" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+  <rect width="600" height="400" fill="url(#sky8)"/>
+  <rect y="280" width="600" height="120" fill="#A5D6A7"/>
+  <rect y="275" width="600" height="15" fill="#C8E6C9"/>
+  <circle cx="320" cy="220" r="80" fill="url(#glow8)" opacity="0.7"/>
+  <path d="M280 250 L300 220 L320 250 L340 220 L360 250 L380 220 L400 250 L420 220 L440 250 L280 250Z" fill="url(#gold1)" filter="url(#shine)"/>
+  <circle cx="300" cy="242" r="6" fill="#FFD54F" stroke="#FFA000" stroke-width="0.8"/>
+  <circle cx="320" cy="238" r="5" fill="#FFD54F" stroke="#FFA000" stroke-width="0.8"/>
+  <circle cx="340" cy="242" r="6" fill="#FFD54F" stroke="#FFA000" stroke-width="0.8"/>
+  <circle cx="360" cy="238" r="5" fill="#FFD54F" stroke="#FFA000" stroke-width="0.8"/>
+  <circle cx="380" cy="242" r="6" fill="#FFD54F" stroke="#FFA000" stroke-width="0.8"/>
+  <circle cx="400" cy="238" r="5" fill="#FFD54F" stroke="#FFA000" stroke-width="0.8"/>
+  <circle cx="420" cy="242" r="6" fill="#FFD54F" stroke="#FFA000" stroke-width="0.8"/>
+  <circle cx="310" cy="235" r="4" fill="#FFEB3B" stroke="#FFC107" stroke-width="0.5"/>
+  <circle cx="330" cy="233" r="4" fill="#FFEB3B" stroke="#FFC107" stroke-width="0.5"/>
+  <circle cx="350" cy="235" r="4" fill="#FFEB3B" stroke="#FFC107" stroke-width="0.5"/>
+  <circle cx="370" cy="233" r="4" fill="#FFEB3B" stroke="#FFC107" stroke-width="0.5"/>
+  <circle cx="390" cy="235" r="4" fill="#FFEB3B" stroke="#FFC107" stroke-width="0.5"/>
+  <circle cx="410" cy="233" r="4" fill="#FFEB3B" stroke="#FFC107" stroke-width="0.5"/>
+  <ellipse cx="360" cy="255" rx="85" ry="12" fill="#FFA000" opacity="0.4"/>
+  <circle cx="150" cy="240" r="16" fill="#8D6E63"/>
+  <circle cx="150" cy="240" r="14" fill="#A1887F"/>
+  <circle cx="145" cy="236" r="2.5" fill="#3E2723"/>
+  <circle cx="155" cy="236" r="2.5" fill="#3E2723"/>
+  <circle cx="145" cy="236" r="1" fill="#000"/>
+  <circle cx="155" cy="236" r="1" fill="#000"/>
+  <ellipse cx="150" cy="244" rx="3" ry="2" fill="#5D4037"/>
+  <path d="M147 248 Q150 252 153 248" stroke="#3E2723" stroke-width="0.8" fill="none"/>
+  <path d="M140 256 L135 280" stroke="#A1887F" stroke-width="5" fill="none" stroke-linecap="round"/>
+  <path d="M160 256 L165 280" stroke="#A1887F" stroke-width="5" fill="none" stroke-linecap="round"/>
+</svg>

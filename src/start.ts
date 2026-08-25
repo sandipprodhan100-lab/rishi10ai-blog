@@ -25,7 +25,7 @@ const errorMiddleware = createMiddleware().server(async ({ next }) => {
 const CSP = [
   "default-src 'self'",
   // Vite/React Start inline bootstrap needs inline/eval.
-  "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://*.lovable.dev https://*.lovable.app",
+  "script-src 'self' 'unsafe-inline' 'unsafe-eval'",
   "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
   "font-src 'self' data: https://fonts.gstatic.com",
   "img-src 'self' data: blob: https:",
@@ -35,7 +35,7 @@ const CSP = [
   "object-src 'none'",
   "base-uri 'self'",
   "form-action 'self'",
-  "frame-ancestors 'self' https://*.lovableproject.com https://*.lovable.app https://*.lovable.dev https://lovable.dev",
+  "frame-ancestors 'self'",
   "upgrade-insecure-requests",
 ].join("; ");
 
@@ -43,17 +43,13 @@ const SECURITY_HEADERS: Record<string, string> = {
   "content-security-policy": CSP,
   "x-content-type-options": "nosniff",
   "referrer-policy": "strict-origin-when-cross-origin",
-  "permissions-policy": "camera=(), microphone=(), geolocation=(), payment=(self), interest-cohort=()",
+  "permissions-policy":
+    "camera=(), microphone=(), geolocation=(), payment=(self), interest-cohort=()",
   "cross-origin-opener-policy": "same-origin-allow-popups",
   "cross-origin-resource-policy": "same-site",
   "strict-transport-security": "max-age=31536000; includeSubDomains",
   "x-dns-prefetch-control": "off",
 };
-
-
-/** Hosts that legitimately embed the app in an iframe (Lovable editor preview). */
-const isPreviewHost = (host: string) =>
-  host.includes("id-preview--") || host.includes("lovableproject.com") || host.includes("lovable.dev");
 
 const securityHeadersMiddleware = createMiddleware().server(async ({ next, request }) => {
   const result = await next();
@@ -64,14 +60,7 @@ const securityHeadersMiddleware = createMiddleware().server(async ({ next, reque
       if (!target.headers.has(key)) target.headers.set(key, value);
     }
     // Legacy clickjacking header for scanners that don't read frame-ancestors.
-    // Skipped on the editor preview so the embedded iframe keeps rendering.
-    let host = "";
-    try {
-      host = new URL(request.url).host;
-    } catch {
-      host = "";
-    }
-    if (!isPreviewHost(host) && !target.headers.has("x-frame-options")) {
+    if (!target.headers.has("x-frame-options")) {
       target.headers.set("x-frame-options", "SAMEORIGIN");
     }
   }

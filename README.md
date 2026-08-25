@@ -12,7 +12,7 @@ time — publishing a new post requires no code changes.
 | Framework  | [TanStack Start](https://tanstack.com/start) (SSR, file-based routing)   |
 | UI         | React 19 + Tailwind CSS 4                                               |
 | Language   | TypeScript (strict, `noUncheckedIndexedAccess`)                          |
-| Build      | Vite 8 via `@lovable.dev/vite-tanstack-config`, nitro with Cloudflare target |
+| Build      | Vite 8 + nitro with Cloudflare Workers target |
 | Content    | `story.docx` sources compiled by `scripts/build-stories.mjs` (mammoth)  |
 | Hosting    | Cloudflare Workers + static assets (`wrangler.jsonc`)                   |
 | Quality    | ESLint 9 + Prettier                                                     |

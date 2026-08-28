@@ -24,6 +24,17 @@ export const STORIES: Story[] = [
     ]
   },
   {
+    "slug": "when-the-clock-strikes-twelve",
+    "title": "When the Clock Strikes Twelve",
+    "author": "Sapatarshi Dasprodhan Aug, 2026",
+    "body": "Tapping, scraping, at the pane,\nShadows dancing through the rain.\n\nHeavy footsteps on the stair,\nFreezing breath and standing hair.\n\nTick-tock strikes the witching hour,\nCasting dark and wicked power.\n\nRattling lock and turning key,\nSomething stalks to look for me.\n\nCreeping, crawling on the floor,\nSliding through the bedroom door.\n\nHear the ragged, raspy breath,\nSmell the cold perfume of death.\n\nTalons scratch against the wood,\nStanding where a shadow stood.",
+    "images": [
+      "/stories/when-the-clock-strikes-twelve/images/01-clock-strikes-twelve.jpg",
+      "/stories/when-the-clock-strikes-twelve/images/02-staircase-shadows.jpg",
+      "/stories/when-the-clock-strikes-twelve/images/03-doorway-talons.jpg"
+    ]
+  },
+  {
     "slug": "the-clever-crow",
     "title": "The Clever Crow",
     "author": "Rishi",

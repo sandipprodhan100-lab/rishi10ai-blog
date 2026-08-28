@@ -134,93 +134,113 @@ export function RishiLandingPage() {
             <div className="lg:grid lg:grid-cols-[200px_1fr] lg:gap-8">
               <nav className="mb-8 hidden lg:block">
                 <div className="sticky top-24">
-                  <p className="mb-3 text-xs font-bold uppercase tracking-[0.18em] text-[#ef6c3b]">Story Index</p>
+                  <p className="mb-3 text-xs font-bold uppercase tracking-[0.18em] text-[#ef6c3b]">
+                    Story Index
+                  </p>
                   <ul className="space-y-2 text-sm font-semibold text-[#52717a]">
-                    <li><a href="#london-post" className="transition-colors hover:text-[#ef6c3b]">My London Journey</a></li>
+                    <li>
+                      <a href="#london-post" className="transition-colors hover:text-[#ef6c3b]">
+                        My London Journey
+                      </a>
+                    </li>
                     {STORIES.map((story) => (
                       <li key={story.slug}>
-                        <a href={`#${story.slug}`} className="transition-colors hover:text-[#ef6c3b]">{story.title}</a>
+                        <a
+                          href={`#${story.slug}`}
+                          className="transition-colors hover:text-[#ef6c3b]"
+                        >
+                          {story.title}
+                        </a>
                       </li>
                     ))}
                   </ul>
                 </div>
               </nav>
               <div>
-            <article id="london-post" className="grid overflow-hidden rounded-[1.5rem] border border-[#e8ded1] bg-[#fffaf3] lg:grid-cols-[0.9fr_1.1fr]">
-              <img
-                src={POSTS[0].image}
-                alt="London skyline and the River Thames"
-                className="h-full min-h-72 w-full object-cover"
-              />
-              <div className="p-7 sm:p-10">
-                <p className="text-xs font-bold uppercase tracking-[0.18em] text-[#ef6c3b]">
-                  {POSTS[0].date}
-                </p>
-                <h3 className="mt-3 font-[Georgia] text-3xl font-bold tracking-[-0.035em]">
-                  {POSTS[0].title}
-                </h3>
-                <p className="mt-5 text-base leading-8 text-[#52717a]">{POSTS[0].body}</p>
-                <p className="mt-5 border-l-2 border-[#f7c96d] pl-4 font-[Georgia] text-lg italic leading-7 text-[#163b45]">
-                  {POSTS[0].note}
-                </p>
-              </div>
-            </article>
+                <article
+                  id="london-post"
+                  className="grid overflow-hidden rounded-[1.5rem] border border-[#e8ded1] bg-[#fffaf3] lg:grid-cols-[0.9fr_1.1fr]"
+                >
+                  <img
+                    src={POSTS[0].image}
+                    alt="London skyline and the River Thames"
+                    className="h-full min-h-72 w-full object-cover"
+                  />
+                  <div className="p-7 sm:p-10">
+                    <p className="text-xs font-bold uppercase tracking-[0.18em] text-[#ef6c3b]">
+                      {POSTS[0].date}
+                    </p>
+                    <h3 className="mt-3 font-[Georgia] text-3xl font-bold tracking-[-0.035em]">
+                      {POSTS[0].title}
+                    </h3>
+                    <p className="mt-5 text-base leading-8 text-[#52717a]">{POSTS[0].body}</p>
+                    <p className="mt-5 border-l-2 border-[#f7c96d] pl-4 font-[Georgia] text-lg italic leading-7 text-[#163b45]">
+                      {POSTS[0].note}
+                    </p>
+                  </div>
+                </article>
 
-            {STORIES.map((story) => (
-              <article
-                id={story.slug}
-                key={story.slug}
-                className="mt-12 overflow-hidden rounded-[1.5rem] border border-[#e8ded1] bg-[#fffaf3]"
-              >
-                <div className="px-7 pb-7 pt-8 text-left sm:px-12 sm:pb-9 sm:pt-10">
-                  <p className="text-xs font-bold uppercase tracking-[0.18em] text-[#ef6c3b]">
-                    {story.slug === "the-refrigerator-hates-me" ? "Poetry" : "Story"}
-                  </p>
-                  <h3 className="mt-3 max-w-3xl font-[Georgia] text-3xl font-bold tracking-[-0.035em] sm:text-4xl">
-                    {story.title}
-                  </h3>
-                  <p className="mt-2 text-sm font-semibold text-[#52717a]">
-                    Written by {story.author}
-                  </p>
-                </div>
-                {story.slug === "the-refrigerator-hates-me" ? (
-                  <div className="grid gap-8 px-2 pb-2 lg:grid-cols-[0.75fr_1.25fr] lg:items-start">
-                    <div className="grid gap-3">
-                      {story.images.slice(0, 3).map((image, index) => (
-                        <img
-                          key={image}
-                          src={image}
-                          alt={`${story.title} illustration ${index + 1}`}
-                          className="h-56 w-full object-cover sm:h-64 lg:h-72"
-                        />
-                      ))}
-                    </div>
-                    <div className="max-w-3xl px-5 py-2 sm:px-10 sm:py-4 lg:px-8">
-                      <p className="whitespace-pre-line font-[Georgia] text-[1.05rem] leading-8 text-[#52717a]">
-                        {story.body}
-                      </p>
-                    </div>
-                  </div>
-                ) : (
-                  <div className="mx-auto max-w-3xl px-7 pb-10 sm:px-12">
-                    {story.body.split(/\n\n+/).map((paragraph, index) => (
-                      <div key={`${story.slug}-${index}`}>
-                        <p className="font-[Georgia] text-[1.05rem] leading-8 text-[#52717a]">
-                          {paragraph}
+                {STORIES.map((story) => {
+                  const isPoem =
+                    story.slug === "the-refrigerator-hates-me" ||
+                    story.slug === "when-the-clock-strikes-twelve";
+                  return (
+                    <article
+                      id={story.slug}
+                      key={story.slug}
+                      className="mt-12 overflow-hidden rounded-[1.5rem] border border-[#e8ded1] bg-[#fffaf3]"
+                    >
+                      <div className="px-7 pb-7 pt-8 text-left sm:px-12 sm:pb-9 sm:pt-10">
+                        <p className="text-xs font-bold uppercase tracking-[0.18em] text-[#ef6c3b]">
+                          {isPoem ? "Poetry" : "Story"}
                         </p>
-                        {story.images[index] && index < story.body.split(/\n\n+/).length - 1 && (
-                          <img
-                            src={story.images[index]}
-                            alt={`${story.title} detail ${index + 1}`}
-                            className="my-8 h-64 w-full object-cover sm:h-80"
-                          />
-                        )}
+                        <h3 className="mt-3 max-w-3xl font-[Georgia] text-3xl font-bold tracking-[-0.035em] sm:text-4xl">
+                          {story.title}
+                        </h3>
+                        <p className="mt-2 text-sm font-semibold text-[#52717a]">
+                          Written by {story.author}
+                        </p>
                       </div>
-                    ))}
-                  </div>
-                )}
-              </article>
-            ))}
+                      {isPoem ? (
+                        <div className="grid gap-8 px-2 pb-2 lg:grid-cols-[0.75fr_1.25fr] lg:items-start">
+                          <div className="grid gap-3">
+                            {story.images.slice(0, 3).map((image, index) => (
+                              <img
+                                key={image}
+                                src={image}
+                                alt={`${story.title} illustration ${index + 1}`}
+                                className="h-56 w-full object-cover sm:h-64 lg:h-72"
+                              />
+                            ))}
+                          </div>
+                          <div className="max-w-3xl px-5 py-2 sm:px-10 sm:py-4 lg:px-8">
+                            <p className="whitespace-pre-line font-[Georgia] text-[1.05rem] leading-8 text-[#52717a]">
+                              {story.body}
+                            </p>
+                          </div>
+                        </div>
+                      ) : (
+                        <div className="mx-auto max-w-3xl px-7 pb-10 sm:px-12">
+                          {story.body.split(/\n\n+/).map((paragraph, index) => (
+                            <div key={`${story.slug}-${index}`}>
+                              <p className="font-[Georgia] text-[1.05rem] leading-8 text-[#52717a]">
+                                {paragraph}
+                              </p>
+                              {story.images[index] &&
+                                index < story.body.split(/\n\n+/).length - 1 && (
+                                  <img
+                                    src={story.images[index]}
+                                    alt={`${story.title} detail ${index + 1}`}
+                                    className="my-8 h-64 w-full object-cover sm:h-80"
+                                  />
+                                )}
+                            </div>
+                          ))}
+                        </div>
+                      )}
+                    </article>
+                  );
+                })}
               </div>
             </div>
           </div>

@@ -10,6 +10,7 @@ const outputPath = path.join(root, "src", "generated", "stories.ts");
 const STORY_ORDER = [
   "the-coordinate-of-autumn",
   "the-refrigerator-hates-me",
+  "when-the-clock-strikes-twelve",
   "the-clever-crow",
   "the-gold-giving-serpent",
   "the-monkey-and-the-crocodile",

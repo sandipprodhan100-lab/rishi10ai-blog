@@ -202,18 +202,29 @@ export function RishiLandingPage() {
                         </p>
                       </div>
                       {isPoem ? (
-                        <div className="grid gap-8 px-2 pb-2 lg:grid-cols-[0.75fr_1.25fr] lg:items-start">
-                          <div className="grid gap-3">
-                            {story.images.slice(0, 3).map((image, index) => (
+                        <div className="grid gap-8 px-7 pb-10 sm:px-12 lg:grid-cols-[1fr_1.15fr] lg:items-start">
+                          <div className="flex flex-col gap-3">
+                            {story.images[0] && (
                               <img
-                                key={image}
-                                src={image}
-                                alt={`${story.title} illustration ${index + 1}`}
-                                className="h-56 w-full object-cover sm:h-64 lg:h-72"
+                                src={story.images[0]}
+                                alt={`${story.title} lead illustration`}
+                                className="aspect-[16/10] w-full rounded-2xl border border-[#e8ded1]/80 object-cover shadow-sm"
                               />
-                            ))}
+                            )}
+                            {story.images.length > 1 && (
+                              <div className="grid grid-cols-2 gap-3">
+                                {story.images.slice(1, 3).map((image, index) => (
+                                  <img
+                                    key={image}
+                                    src={image}
+                                    alt={`${story.title} illustration ${index + 2}`}
+                                    className="aspect-[4/3] w-full rounded-xl border border-[#e8ded1]/80 object-cover shadow-sm"
+                                  />
+                                ))}
+                              </div>
+                            )}
                           </div>
-                          <div className="max-w-3xl px-5 py-2 sm:px-10 sm:py-4 lg:px-8">
+                          <div className="max-w-2xl">
                             <p className="whitespace-pre-line font-[Georgia] text-[1.05rem] leading-8 text-[#52717a]">
                               {story.body}
                             </p>

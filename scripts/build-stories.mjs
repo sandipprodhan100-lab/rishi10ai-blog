@@ -11,6 +11,8 @@ const STORY_ORDER = [
   "the-coordinate-of-autumn",
   "the-refrigerator-hates-me",
   "when-the-clock-strikes-twelve",
+  "the-smart-home-that-locked-the-doors-and-welcomed-something-else-inside",
+  "advantages-and-disadvantages-of-mobile-phones",
   "the-clever-crow",
   "the-gold-giving-serpent",
   "the-monkey-and-the-crocodile",

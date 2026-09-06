@@ -483,84 +483,42 @@ export function RishiLandingPage() {
               </p>
             </div>
 
-            {/* Mobile / Tablet Horizontal Story Bar */}
-            <div className="mb-8 flex overflow-x-auto pb-3 gap-2 lg:hidden no-scrollbar">
-              {allStoryItems.map((item, idx) => {
-                const isActive = activeSlug === item.id;
-                return (
-                  <a
-                    key={item.id}
-                    href={`#${item.id}`}
-                    className={`shrink-0 rounded-full px-4 py-2 text-xs font-bold transition-all ${
-                      isActive
-                        ? "bg-[#ef6c3b] text-white shadow-md shadow-[#ef6c3b]/20"
-                        : "bg-[#fffaf3] text-[#52717a] border border-[#e8ded1] hover:bg-white hover:text-[#163b45]"
-                    }`}
-                  >
-                    <span className="mr-1.5 opacity-70">0{idx + 1}.</span>
-                    {item.title}
-                  </a>
-                );
-              })}
-            </div>
-
-            <div className="lg:grid lg:grid-cols-[280px_1fr] lg:gap-10 items-start">
-              {/* Desktop Sticky Floating Distinguishable Story Index */}
-              <nav className="hidden lg:block">
-                <div className="sticky top-24 max-h-[calc(100vh-7rem)] overflow-y-auto rounded-2xl border border-[#e8ded1] bg-[#fffaf3]/95 p-4 shadow-sm backdrop-blur-md">
-                  <div className="mb-3 flex items-center justify-between border-b border-[#e8ded1]/80 pb-2.5">
-                    <p className="text-xs font-bold uppercase tracking-[0.18em] text-[#ef6c3b]">
-                      Story Index
-                    </p>
-                    <span className="text-[11px] font-bold text-[#8b9da0]">
-                      {allStoryItems.length} Entries
-                    </span>
-                  </div>
-                  <ul className="space-y-1.5">
-                    {allStoryItems.map((item, idx) => {
-                      const isActive = activeSlug === item.id;
-                      return (
-                        <li key={item.id}>
-                          <a
-                            href={`#${item.id}`}
-                            className={`group flex items-start gap-2.5 rounded-xl p-2.5 text-left transition-all ${
-                              isActive
-                                ? "bg-white border-l-4 border-l-[#ef6c3b] border-y border-r border-[#e8ded1] shadow-sm text-[#163b45] font-bold"
-                                : "text-[#52717a] hover:bg-white/70 hover:text-[#163b45] border border-transparent"
-                            }`}
-                          >
-                            <span
-                              className={`mt-0.5 grid size-5 shrink-0 place-items-center rounded-md text-[10px] font-bold font-mono transition-colors ${
-                                isActive
-                                  ? "bg-[#ef6c3b] text-white"
-                                  : "bg-[#e8ded1]/60 text-[#6d8a92] group-hover:bg-[#ef6c3b]/15 group-hover:text-[#ef6c3b]"
-                              }`}
-                            >
-                              {idx + 1}
-                            </span>
-                            <div className="min-w-0 flex-1">
-                              <div className="flex items-center gap-1.5 justify-between">
-                                <span className="line-clamp-2 text-xs font-semibold leading-snug">
-                                  {item.title}
-                                </span>
-                              </div>
-                              <div className="mt-1 flex items-center gap-1.5">
-                                <span
-                                  className={`rounded-full border px-1.5 py-0.2 text-[9px] font-bold uppercase tracking-wider ${item.category.color}`}
-                                >
-                                  {item.category.label}
-                                </span>
-                              </div>
-                            </div>
-                          </a>
-                        </li>
-                      );
-                    })}
-                  </ul>
+            <nav
+              aria-label="Story index"
+              className="sticky top-[73px] z-20 -mx-5 mb-8 border-y border-[#e8ded1] bg-white/95 px-5 py-3 backdrop-blur-md sm:-mx-8 sm:px-8"
+            >
+              <div className="mx-auto flex max-w-6xl items-center gap-4">
+                <div className="hidden shrink-0 border-r border-[#e8ded1] pr-4 sm:block">
+                  <p className="text-xs font-bold uppercase tracking-[0.18em] text-[#ef6c3b]">
+                    Story Index
+                  </p>
+                  <p className="mt-0.5 text-[10px] font-bold text-[#8b9da0]">
+                    {allStoryItems.length} Entries
+                  </p>
                 </div>
-              </nav>
+                <div className="flex min-w-0 gap-2 overflow-x-auto pb-1 no-scrollbar">
+                  {allStoryItems.map((item, index) => {
+                    const isActive = activeSlug === item.id;
+                    return (
+                      <a
+                        key={item.id}
+                        href={`#${item.id}`}
+                        className={`shrink-0 rounded-full border px-3 py-2 text-xs font-bold transition-all ${
+                          isActive
+                            ? "border-[#ef6c3b] bg-[#ef6c3b] text-white shadow-sm"
+                            : "border-[#e8ded1] bg-[#fffaf3] text-[#52717a] hover:bg-white hover:text-[#163b45]"
+                        }`}
+                      >
+                        <span className="mr-1.5 opacity-70">{index + 1}.</span>
+                        {item.title}
+                      </a>
+                    );
+                  })}
+                </div>
+              </div>
+            </nav>
 
-              <div>
+            <div>
                 {/* London Post */}
                 <article
                   id="london-post"
@@ -660,7 +618,6 @@ export function RishiLandingPage() {
                   );
                 })}
               </div>
-            </div>
           </div>
         </section>
 

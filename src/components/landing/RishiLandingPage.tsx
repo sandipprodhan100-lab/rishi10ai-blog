@@ -108,13 +108,16 @@ function StructuredStoryBody({ story }: { story: Story }) {
                     Disadvantages of Mobile Phones
                   </h4>
                 </div>
-                {story.images[3] && (
+                {story.images[2] && (
                   <div className="mt-6 overflow-hidden rounded-2xl border border-[#e8ded1] shadow-md">
                     <img
-                      src={story.images[3]}
-                      alt="The benefits and risks of mobile-phone use"
+                      src={story.images[2]}
+                      alt="Digital eye strain and screen fatigue from mobile-phone use"
                       className="h-auto w-full object-cover"
                     />
+                    <p className="border-t border-[#e8ded1] bg-[#fcfaf7] px-4 py-2.5 text-xs font-semibold text-[#6d8a92]">
+                      Disadvantage: digital fatigue, disrupted sleep and isolation
+                    </p>
                   </div>
                 )}
               </div>
@@ -187,7 +190,6 @@ function StructuredStoryBody({ story }: { story: Story }) {
             const lines = trimmed.split("\n");
             const heading = lines[0];
             const bulletItems = lines.slice(1);
-            const isFirstDisadvantage = heading.startsWith("1.");
 
             return (
               <div key={index} className="my-6">
@@ -214,19 +216,6 @@ function StructuredStoryBody({ story }: { story: Story }) {
                     })}
                   </ul>
                 </div>
-                {/* Image 3: Digital fatigue */}
-                {isFirstDisadvantage && story.images[2] && (
-                  <div className="my-8 overflow-hidden rounded-2xl border border-[#e8ded1] shadow-md">
-                    <img
-                      src={story.images[2]}
-                      alt="Digital eye strain and screen fatigue"
-                      className="h-72 w-full object-cover sm:h-96"
-                    />
-                    <div className="bg-[#fcfaf7] px-4 py-2.5 text-xs font-semibold text-[#6d8a92] border-t border-[#e8ded1]">
-                      The cost of constant connection: Late night blue light exposure and screen fatigue
-                    </div>
-                  </div>
-                )}
               </div>
             );
           }
@@ -234,6 +223,15 @@ function StructuredStoryBody({ story }: { story: Story }) {
           // Normal paragraph
           return (
             <div key={index} className="my-4">
+              {index === 0 && story.images[3] && (
+                <div className="mb-8 overflow-hidden rounded-2xl border border-[#e8ded1] shadow-md">
+                  <img
+                    src={story.images[3]}
+                    alt="The benefits and risks of mobile-phone use"
+                    className="h-auto w-full object-cover"
+                  />
+                </div>
+              )}
               <p className="font-[Georgia] text-[1.05rem] leading-8 text-[#52717a]">
                 {trimmed}
               </p>
@@ -246,6 +244,10 @@ function StructuredStoryBody({ story }: { story: Story }) {
 
   // Standard story layout (Smart home & other narratives)
   const paragraphs = story.body.split(/\n\n+/);
+  const isFable =
+    story.slug === "the-clever-crow" ||
+    story.slug === "the-gold-giving-serpent" ||
+    story.slug === "the-monkey-and-the-crocodile";
   return (
     <div className="mx-auto max-w-3xl px-7 pb-10 sm:px-12">
       {paragraphs.map((paragraph, index, arr) => {
@@ -260,7 +262,7 @@ function StructuredStoryBody({ story }: { story: Story }) {
           else if (index === 11 && story.images[2]) imageToRender = story.images[2];
         } else {
           // General story image spacing
-          if (story.images.length === 1 && index === Math.floor(arr.length / 2)) {
+          if (story.images.length === 1 && index === (isFable ? 1 : Math.floor(arr.length / 2))) {
             imageToRender = story.images[0];
           } else if (story.images.length === 2) {
             if (index === 1) imageToRender = story.images[0];

@@ -395,9 +395,9 @@ export function RishiLandingPage() {
 
     const observer = new IntersectionObserver(
       ([entry]) => {
-        setIsStoryIndexPinned(!entry.isIntersecting && entry.boundingClientRect.top < 73);
+        setIsStoryIndexPinned(!entry.isIntersecting && entry.boundingClientRect.top <= 0);
       },
-      { rootMargin: "-73px 0px 0px 0px", threshold: 0 }
+      { rootMargin: "0px 0px 0px 0px", threshold: 0 }
     );
 
     observer.observe(trigger);
@@ -515,12 +515,12 @@ export function RishiLandingPage() {
           <div className="mx-auto max-w-6xl">
             <div
               ref={storyIndexTriggerRef}
-              className={isStoryIndexPinned ? (openCategory ? "mb-8 min-h-[380px]" : "mb-8 min-h-[330px]") : ""}
+              className={isStoryIndexPinned ? (openCategory ? "mb-8 min-h-[340px]" : "mb-8 min-h-[290px]") : ""}
             >
               <div
-                className={`z-20 bg-white/95 backdrop-blur-md ${
+                className={`bg-white/98 backdrop-blur-md transition-all ${
                   isStoryIndexPinned
-                    ? "fixed inset-x-0 top-[73px] px-5 py-8 shadow-md sm:px-8"
+                    ? "fixed inset-x-0 top-0 z-40 px-5 py-6 shadow-[0_8px_30px_rgba(22,59,69,0.08)] sm:px-8"
                     : "mb-8"
                 }`}
               >
@@ -611,7 +611,7 @@ export function RishiLandingPage() {
                 {/* London Post */}
                 <article
                   id="london-post"
-                  className="grid overflow-hidden rounded-[1.5rem] border border-[#e8ded1] bg-[#fffaf3] lg:grid-cols-[0.9fr_1.1fr] scroll-mt-24 shadow-sm"
+                  className="grid overflow-hidden rounded-[1.5rem] border border-[#e8ded1] bg-[#fffaf3] lg:grid-cols-[0.9fr_1.1fr] scroll-mt-72 shadow-sm"
                 >
                   <img
                     src={POSTS[0].image}
@@ -649,7 +649,7 @@ export function RishiLandingPage() {
                     <article
                       id={story.slug}
                       key={story.slug}
-                      className={`mt-12 overflow-hidden rounded-[1.5rem] border border-[#e8ded1] ${surface} scroll-mt-24 shadow-sm transition-shadow hover:shadow-md`}
+                      className={`mt-12 overflow-hidden rounded-[1.5rem] border border-[#e8ded1] ${surface} scroll-mt-72 shadow-sm transition-shadow hover:shadow-md`}
                     >
                       <div className="px-7 pb-6 pt-8 text-left sm:px-12 sm:pb-8 sm:pt-10">
                         <div className="flex items-center gap-2 mb-2">

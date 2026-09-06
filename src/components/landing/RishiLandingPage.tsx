@@ -50,6 +50,29 @@ function getStoryCategory(story: Story): { label: string; color: string } {
   return { label: "Fiction", color: "bg-sky-100 text-sky-800 border-sky-200" };
 }
 
+function getStorySurface(story: Story): string {
+  switch (story.slug) {
+    case "the-coordinate-of-autumn":
+      return "bg-[#fff9ef]";
+    case "the-refrigerator-hates-me":
+      return "bg-[#fcf7ff]";
+    case "when-the-clock-strikes-twelve":
+      return "bg-[#fff7f5]";
+    case "the-smart-home-that-locked-the-doors-and-welcomed-something-else-inside":
+      return "bg-[#f3fafb]";
+    case "advantages-and-disadvantages-of-mobile-phones":
+      return "bg-[#f6fcf5]";
+    case "the-clever-crow":
+      return "bg-[#fffaf0]";
+    case "the-gold-giving-serpent":
+      return "bg-[#fff8ed]";
+    case "the-monkey-and-the-crocodile":
+      return "bg-[#f4fbf7]";
+    default:
+      return "bg-[#fffaf3]";
+  }
+}
+
 function RishiMark() {
   return (
     <a href="#top" className="flex items-center gap-2.5">
@@ -573,12 +596,13 @@ export function RishiLandingPage() {
                     story.slug === "the-refrigerator-hates-me" ||
                     story.slug === "when-the-clock-strikes-twelve";
                   const category = getStoryCategory(story);
+                  const surface = getStorySurface(story);
 
                   return (
                     <article
                       id={story.slug}
                       key={story.slug}
-                      className="mt-12 overflow-hidden rounded-[1.5rem] border border-[#e8ded1] bg-[#fffaf3] scroll-mt-24 shadow-sm transition-shadow hover:shadow-md"
+                      className={`mt-12 overflow-hidden rounded-[1.5rem] border border-[#e8ded1] ${surface} scroll-mt-24 shadow-sm transition-shadow hover:shadow-md`}
                     >
                       <div className="px-7 pb-6 pt-8 text-left sm:px-12 sm:pb-8 sm:pt-10">
                         <div className="flex items-center gap-2 mb-2">

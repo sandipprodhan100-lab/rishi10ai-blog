@@ -38,14 +38,7 @@ function getStoryCategory(story: Story): { label: string; color: string } {
     return { label: "Horror", color: "bg-rose-100 text-rose-800 border-rose-200" };
   }
   if (story.slug === "advantages-and-disadvantages-of-mobile-phones") {
-    return { label: "Essay", color: "bg-emerald-100 text-emerald-800 border-emerald-200" };
-  }
-  if (
-    story.slug === "the-clever-crow" ||
-    story.slug === "the-gold-giving-serpent" ||
-    story.slug === "the-monkey-and-the-crocodile"
-  ) {
-    return { label: "Fable", color: "bg-amber-100 text-amber-800 border-amber-200" };
+    return { label: "Nonfiction", color: "bg-blue-100 text-blue-800 border-blue-200" };
   }
   return { label: "Fiction", color: "bg-sky-100 text-sky-800 border-sky-200" };
 }
@@ -415,7 +408,7 @@ export function RishiLandingPage() {
         id: "london-post",
         title: "My London Journey",
         author: "Rishi",
-        category: { label: "Travel", color: "bg-blue-100 text-blue-800 border-blue-200" },
+        category: { label: "Nonfiction", color: "bg-blue-100 text-blue-800 border-blue-200" },
       },
       ...STORIES.map((s) => ({
         id: s.slug,
@@ -614,7 +607,7 @@ export function RishiLandingPage() {
                   <div className="p-7 sm:p-10">
                     <div className="flex items-center gap-2">
                       <span className="rounded-full border border-blue-200 bg-blue-100 px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider text-blue-800">
-                        Travel
+                        Nonfiction
                       </span>
                       <p className="text-xs font-bold uppercase tracking-[0.18em] text-[#ef6c3b]">
                         {POSTS[0].date}

@@ -1,5 +1,5 @@
 import { useEffect, useState, useMemo } from "react";
-import { Plane, Sparkles, BookOpen, Feather, Smartphone, AlertTriangle, CheckCircle2, ShieldAlert, HeartHandshake } from "lucide-react";
+import { Plane, Sparkles, BookOpen, Feather, Smartphone, AlertTriangle, CheckCircle2, ShieldAlert, HeartHandshake, ChevronDown } from "lucide-react";
 import { STORIES, Story } from "@/generated/stories";
 
 const POSTS = [
@@ -355,6 +355,7 @@ function StructuredStoryBody({ story }: { story: Story }) {
 export function RishiLandingPage() {
   const [dreams, setDreams] = useState("");
   const [activeSlug, setActiveSlug] = useState<string>("london-post");
+  const [openCategory, setOpenCategory] = useState<string | null>(null);
 
   useEffect(() => {
     setDreams(window.localStorage.getItem("rishi-dreams") ?? "");
@@ -407,6 +408,28 @@ export function RishiLandingPage() {
       })),
     ];
   }, []);
+
+  const storyCategories = useMemo(() => {
+    const categories = new Map<
+      string,
+      { label: string; color: string; items: (typeof allStoryItems)[number][] }
+    >();
+
+    allStoryItems.forEach((item) => {
+      const existingCategory = categories.get(item.category.label);
+      if (existingCategory) {
+        existingCategory.items.push(item);
+      } else {
+        categories.set(item.category.label, {
+          label: item.category.label,
+          color: item.category.color,
+          items: [item],
+        });
+      }
+    });
+
+    return Array.from(categories.values());
+  }, [allStoryItems]);
 
   return (
     <div id="top" className="min-h-screen overflow-hidden bg-[#fffaf3] text-[#163b45]">
@@ -497,25 +520,58 @@ export function RishiLandingPage() {
                   </p>
                 </div>
                 <div className="flex min-w-0 gap-2 overflow-x-auto pb-1 no-scrollbar">
-                  {allStoryItems.map((item, index) => {
-                    const isActive = activeSlug === item.id;
+                  {storyCategories.map((category) => {
+                    const activeItem = category.items.find((item) => item.id === activeSlug);
+                    const hasMultipleStories = category.items.length > 1;
+                    const categoryClassName = `shrink-0 rounded-full border px-3 py-2 text-xs font-bold transition-all ${
+                      activeItem
+                        ? "border-[#ef6c3b] bg-[#ef6c3b] text-white shadow-sm"
+                        : "border-[#e8ded1] bg-[#fffaf3] text-[#52717a] hover:bg-white hover:text-[#163b45]"
+                    }`;
+
+                    if (!hasMultipleStories) {
+                      return (
+                        <a key={category.label} href={`#${category.items[0].id}`} className={categoryClassName}>
+                          {category.label}
+                        </a>
+                      );
+                    }
+
                     return (
-                      <a
-                        key={item.id}
-                        href={`#${item.id}`}
-                        className={`shrink-0 rounded-full border px-3 py-2 text-xs font-bold transition-all ${
-                          isActive
-                            ? "border-[#ef6c3b] bg-[#ef6c3b] text-white shadow-sm"
-                            : "border-[#e8ded1] bg-[#fffaf3] text-[#52717a] hover:bg-white hover:text-[#163b45]"
-                        }`}
+                      <button
+                        key={category.label}
+                        type="button"
+                        aria-expanded={openCategory === category.label}
+                        onClick={() => setOpenCategory((current) => current === category.label ? null : category.label)}
+                        className={`${categoryClassName} inline-flex items-center gap-1.5`}
                       >
-                        <span className="mr-1.5 opacity-70">{index + 1}.</span>
-                        {item.title}
-                      </a>
+                        {category.label}
+                        <span className="opacity-70">{category.items.length}</span>
+                        <ChevronDown className={`size-3.5 transition-transform ${openCategory === category.label ? "rotate-180" : ""}`} />
+                      </button>
                     );
                   })}
                 </div>
               </div>
+              {openCategory && (
+                <div className="mx-auto mt-2 flex max-w-6xl items-center gap-2 overflow-x-auto pb-1 no-scrollbar">
+                  {storyCategories.find((category) => category.label === openCategory)?.items.map((item, index) => (
+                    <a
+                      key={item.id}
+                      href={`#${item.id}`}
+                      onClick={() => setOpenCategory(null)}
+                      className={`shrink-0 rounded-full border px-3 py-1.5 text-xs font-bold transition-colors ${
+                        activeSlug === item.id
+                          ? "border-[#ef6c3b] bg-[#ef6c3b] text-white"
+                          : "border-[#e8ded1] bg-white text-[#52717a] hover:text-[#163b45]"
+                      }`}
+                    >
+                      <span className="mr-1.5 opacity-70">{index + 1}.</span>
+                      {item.title}
+                    </a>
+                  ))}
+                </div>
+              )}
             </nav>
 
             <div>

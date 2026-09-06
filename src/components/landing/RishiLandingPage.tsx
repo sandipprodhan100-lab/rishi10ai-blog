@@ -513,105 +513,98 @@ export function RishiLandingPage() {
 
         <section id="blog" className="border-y border-[#e8ded1] bg-white px-5 py-20 sm:px-8">
           <div className="mx-auto max-w-6xl">
+            <SectionLabel>01 / Rishi Blogpost</SectionLabel>
+            <div className="mb-8 flex flex-wrap items-end justify-between gap-5">
+              <h2 className="max-w-2xl font-[Georgia] text-4xl font-bold leading-tight tracking-[-0.04em] sm:text-5xl">
+                Stories from the road, told in my own words.
+              </h2>
+              <p className="max-w-xs text-sm leading-6 text-[#52717a]">
+                A ten-year-old view of places that feel much bigger than a map.
+              </p>
+            </div>
+
             <div
               ref={storyIndexTriggerRef}
-              className={isStoryIndexPinned ? (openCategory ? "mb-8 min-h-[340px]" : "mb-8 min-h-[290px]") : ""}
+              className={isStoryIndexPinned ? (openCategory ? "mb-8 min-h-[110px]" : "mb-8 min-h-[60px]") : ""}
             >
-              <div
-                className={`bg-white/98 backdrop-blur-md transition-all ${
+              <nav
+                aria-label="Story index"
+                className={`transition-all ${
                   isStoryIndexPinned
-                    ? "fixed inset-x-0 top-0 z-40 px-5 py-6 shadow-[0_8px_30px_rgba(22,59,69,0.08)] sm:px-8"
-                    : "mb-8"
+                    ? "fixed inset-x-0 top-0 z-40 border-b border-[#e8ded1] bg-white/98 px-5 py-3 shadow-[0_8px_30px_rgba(22,59,69,0.08)] backdrop-blur-md sm:px-8"
+                    : "-mx-5 mb-8 border-y border-[#e8ded1] bg-white/95 px-5 py-3 backdrop-blur-md sm:-mx-8 sm:px-8"
                 }`}
               >
-                <div className="mx-auto max-w-6xl">
-                  <SectionLabel>01 / Rishi Blogpost</SectionLabel>
-                  <div className="mb-8 flex flex-wrap items-end justify-between gap-5">
-                    <h2 className="max-w-2xl font-[Georgia] text-4xl font-bold leading-tight tracking-[-0.04em] sm:text-5xl">
-                      Stories from the road, told in my own words.
-                    </h2>
-                    <p className="max-w-xs text-sm leading-6 text-[#52717a]">
-                      A ten-year-old view of places that feel much bigger than a map.
+                <div className="mx-auto flex max-w-6xl items-center gap-4">
+                  <div className="hidden shrink-0 border-r border-[#e8ded1] pr-4 sm:block">
+                    <p className="text-xs font-bold uppercase tracking-[0.18em] text-[#ef6c3b]">
+                      Story Index
+                    </p>
+                    <p className="mt-0.5 text-[10px] font-bold text-[#8b9da0]">
+                      {allStoryItems.length} Entries
                     </p>
                   </div>
-                  <nav
-                    aria-label="Story index"
-                    className={`border-y border-[#e8ded1] px-5 py-3 sm:-mx-8 sm:px-8 ${
-                      isStoryIndexPinned ? "border-x-0" : "-mx-5"
-                    }`}
-                  >
-                    <div className="mx-auto flex max-w-6xl items-center gap-4">
-                      <div className="hidden shrink-0 border-r border-[#e8ded1] pr-4 sm:block">
-                        <p className="text-xs font-bold uppercase tracking-[0.18em] text-[#ef6c3b]">
-                          Story Index
-                        </p>
-                        <p className="mt-0.5 text-[10px] font-bold text-[#8b9da0]">
-                          {allStoryItems.length} Entries
-                        </p>
-                      </div>
-                      <div className="flex min-w-0 gap-2 overflow-x-auto pb-1 no-scrollbar">
-                        {storyCategories.map((category) => {
-                          const activeItem = category.items.find((item) => item.id === activeSlug);
-                          const hasMultipleStories = category.items.length > 1;
-                          const categoryClassName = `shrink-0 rounded-full border px-3 py-2 text-xs font-bold transition-all ${
-                            activeItem
-                              ? "border-[#ef6c3b] bg-[#ef6c3b] text-white shadow-sm"
-                              : "border-[#e8ded1] bg-[#fffaf3] text-[#52717a] hover:bg-white hover:text-[#163b45]"
-                          }`;
+                  <div className="flex min-w-0 gap-2 overflow-x-auto pb-1 no-scrollbar">
+                    {storyCategories.map((category) => {
+                      const activeItem = category.items.find((item) => item.id === activeSlug);
+                      const hasMultipleStories = category.items.length > 1;
+                      const categoryClassName = `shrink-0 rounded-full border px-3 py-2 text-xs font-bold transition-all ${
+                        activeItem
+                          ? "border-[#ef6c3b] bg-[#ef6c3b] text-white shadow-sm"
+                          : "border-[#e8ded1] bg-[#fffaf3] text-[#52717a] hover:bg-white hover:text-[#163b45]"
+                      }`;
 
-                          if (!hasMultipleStories) {
-                            return (
-                              <a key={category.label} href={`#${category.items[0].id}`} className={categoryClassName}>
-                                {category.label}
-                              </a>
-                            );
-                          }
-
-                          return (
-                            <button
-                              key={category.label}
-                              type="button"
-                              aria-expanded={openCategory === category.label}
-                              onClick={() => setOpenCategory((current) => current === category.label ? null : category.label)}
-                              className={`${categoryClassName} inline-flex items-center gap-1.5`}
-                            >
-                              {category.label}
-                              <span className="opacity-70">{category.items.length}</span>
-                              <ChevronDown className={`size-3.5 transition-transform ${openCategory === category.label ? "rotate-180" : ""}`} />
-                            </button>
-                          );
-                        })}
-                      </div>
-                    </div>
-                    {openCategory && (
-                      <div className="mx-auto mt-2 flex max-w-6xl items-center gap-2 overflow-x-auto pb-1 no-scrollbar">
-                        {storyCategories.find((category) => category.label === openCategory)?.items.map((item, index) => (
-                          <a
-                            key={item.id}
-                            href={`#${item.id}`}
-                            onClick={() => setOpenCategory(null)}
-                            className={`shrink-0 rounded-full border px-3 py-1.5 text-xs font-bold transition-colors ${
-                              activeSlug === item.id
-                                ? "border-[#ef6c3b] bg-[#ef6c3b] text-white"
-                                : "border-[#e8ded1] bg-white text-[#52717a] hover:text-[#163b45]"
-                            }`}
-                          >
-                            <span className="mr-1.5 opacity-70">{index + 1}.</span>
-                            {item.title}
+                      if (!hasMultipleStories) {
+                        return (
+                          <a key={category.label} href={`#${category.items[0].id}`} className={categoryClassName}>
+                            {category.label}
                           </a>
-                        ))}
-                      </div>
-                    )}
-                  </nav>
+                        );
+                      }
+
+                      return (
+                        <button
+                          key={category.label}
+                          type="button"
+                          aria-expanded={openCategory === category.label}
+                          onClick={() => setOpenCategory((current) => current === category.label ? null : category.label)}
+                          className={`${categoryClassName} inline-flex items-center gap-1.5`}
+                        >
+                          {category.label}
+                          <span className="opacity-70">{category.items.length}</span>
+                          <ChevronDown className={`size-3.5 transition-transform ${openCategory === category.label ? "rotate-180" : ""}`} />
+                        </button>
+                      );
+                    })}
+                  </div>
                 </div>
-              </div>
+                {openCategory && (
+                  <div className="mx-auto mt-2 flex max-w-6xl items-center gap-2 overflow-x-auto pb-1 no-scrollbar">
+                    {storyCategories.find((category) => category.label === openCategory)?.items.map((item, index) => (
+                      <a
+                        key={item.id}
+                        href={`#${item.id}`}
+                        onClick={() => setOpenCategory(null)}
+                        className={`shrink-0 rounded-full border px-3 py-1.5 text-xs font-bold transition-colors ${
+                          activeSlug === item.id
+                            ? "border-[#ef6c3b] bg-[#ef6c3b] text-white"
+                            : "border-[#e8ded1] bg-white text-[#52717a] hover:text-[#163b45]"
+                        }`}
+                      >
+                        <span className="mr-1.5 opacity-70">{index + 1}.</span>
+                        {item.title}
+                      </a>
+                    ))}
+                  </div>
+                )}
+              </nav>
             </div>
 
             <div>
                 {/* London Post */}
                 <article
                   id="london-post"
-                  className="grid overflow-hidden rounded-[1.5rem] border border-[#e8ded1] bg-[#fffaf3] lg:grid-cols-[0.9fr_1.1fr] scroll-mt-72 shadow-sm"
+                  className="grid overflow-hidden rounded-[1.5rem] border border-[#e8ded1] bg-[#fffaf3] lg:grid-cols-[0.9fr_1.1fr] scroll-mt-24 shadow-sm"
                 >
                   <img
                     src={POSTS[0].image}
@@ -649,7 +642,7 @@ export function RishiLandingPage() {
                     <article
                       id={story.slug}
                       key={story.slug}
-                      className={`mt-12 overflow-hidden rounded-[1.5rem] border border-[#e8ded1] ${surface} scroll-mt-72 shadow-sm transition-shadow hover:shadow-md`}
+                      className={`mt-12 overflow-hidden rounded-[1.5rem] border border-[#e8ded1] ${surface} scroll-mt-24 shadow-sm transition-shadow hover:shadow-md`}
                     >
                       <div className="px-7 pb-6 pt-8 text-left sm:px-12 sm:pb-8 sm:pt-10">
                         <div className="flex items-center gap-2 mb-2">

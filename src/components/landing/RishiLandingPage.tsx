@@ -226,6 +226,15 @@ function StructuredStoryBody({ story }: { story: Story }) {
               <p className="font-[Georgia] text-[1.05rem] leading-8 text-[#52717a]">
                 {trimmed}
               </p>
+              {index === 0 && story.images[3] && (
+                <div className="my-8 overflow-hidden rounded-2xl border border-[#e8ded1] shadow-md">
+                  <img
+                    src={story.images[3]}
+                    alt="Mobile phones connecting everyday life"
+                    className="h-72 w-full object-cover sm:h-96"
+                  />
+                </div>
+              )}
             </div>
           );
         })}
@@ -557,14 +566,18 @@ export function RishiLandingPage() {
                       </div>
 
                       {isPoem ? (
-                        <div className="grid gap-8 px-7 pb-10 sm:px-12 lg:grid-cols-[0.9fr_1.1fr] lg:items-stretch">
-                          <div className="flex h-full flex-col gap-3">
+                        <div className="grid gap-8 px-7 pb-10 sm:px-12 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
+                          <div className={`flex gap-3 ${story.images.length > 1 ? "h-full flex-col" : ""}`}>
                             {story.images.slice(0, 3).map((image, index) => (
                               <img
                                 key={image}
                                 src={image}
                                 alt={`${story.title} illustration ${index + 1}`}
-                                className="h-48 w-full rounded-2xl border border-[#e8ded1]/80 object-cover shadow-sm lg:h-auto lg:min-h-0 lg:flex-1"
+                                className={`w-full rounded-2xl border border-[#e8ded1]/80 shadow-sm ${
+                                  story.images.length === 1
+                                    ? "aspect-[4/5] bg-[#f1e5d5] object-contain lg:sticky lg:top-24"
+                                    : "h-48 object-cover lg:h-auto lg:min-h-0 lg:flex-1"
+                                }`}
                               />
                             ))}
                           </div>

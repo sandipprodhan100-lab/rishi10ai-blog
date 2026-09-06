@@ -78,6 +78,9 @@ function StructuredStoryBody({ story }: { story: Story }) {
 
   if (isMobileEssay) {
     const rawParagraphs = story.body.split(/\n\n+/);
+    const advantagesStartIndex = rawParagraphs.findIndex(
+      (paragraph) => paragraph.trim() === "ADVANTAGES OF MOBILE PHONES"
+    );
     const disadvantagesStartIndex = rawParagraphs.findIndex(
       (paragraph) => paragraph.trim() === "DISADVANTAGES OF MOBILE PHONES"
     );
@@ -88,6 +91,8 @@ function StructuredStoryBody({ story }: { story: Story }) {
       <div className="mx-auto max-w-3xl px-7 pb-10 sm:px-12">
         {rawParagraphs.map((paragraph, index) => {
           const trimmed = paragraph.trim();
+          const isAdvantage =
+            index > advantagesStartIndex && index < disadvantagesStartIndex;
           const isDisadvantage =
             index > disadvantagesStartIndex && index < conclusionIndex;
 
@@ -150,18 +155,24 @@ function StructuredStoryBody({ story }: { story: Story }) {
             const lines = trimmed.split("\n");
             const heading = lines[0];
             const content = lines.slice(1).join("\n");
-            const isFirstAdvantage = !isDisadvantage && heading.startsWith("1.");
-            const isSecondAdvantage = !isDisadvantage && heading.startsWith("2.");
+            const isFirstAdvantage = index === advantagesStartIndex + 1;
+            const isSecondAdvantage = index === advantagesStartIndex + 2;
 
             return (
               <div key={index} className="my-6">
                 <div className={`rounded-2xl border p-6 ${
                   isDisadvantage
                     ? "border-rose-200/80 bg-rose-50/30"
-                    : "border-emerald-200/80 bg-emerald-50/40"
+                    : isAdvantage
+                    ? "border-emerald-200/80 bg-emerald-50/40"
+                    : "border-[#e8ded1] bg-white"
                 }`}>
                   <h5 className={`mb-3 font-[Georgia] text-xl font-bold ${
-                    isDisadvantage ? "text-rose-950" : "text-emerald-900"
+                    isDisadvantage
+                      ? "text-rose-950"
+                      : isAdvantage
+                      ? "text-emerald-900"
+                      : "text-[#163b45]"
                   }`}>
                     {heading}
                   </h5>

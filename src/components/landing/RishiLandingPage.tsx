@@ -78,10 +78,18 @@ function StructuredStoryBody({ story }: { story: Story }) {
 
   if (isMobileEssay) {
     const rawParagraphs = story.body.split(/\n\n+/);
+    const disadvantagesStartIndex = rawParagraphs.findIndex(
+      (paragraph) => paragraph.trim() === "DISADVANTAGES OF MOBILE PHONES"
+    );
+    const conclusionIndex = rawParagraphs.findIndex(
+      (paragraph) => paragraph.trim() === "CONCLUSION"
+    );
     return (
       <div className="mx-auto max-w-3xl px-7 pb-10 sm:px-12">
         {rawParagraphs.map((paragraph, index) => {
           const trimmed = paragraph.trim();
+          const isDisadvantage =
+            index > disadvantagesStartIndex && index < conclusionIndex;
 
           // Section headers
           if (trimmed === "ADVANTAGES OF MOBILE PHONES") {
@@ -142,13 +150,19 @@ function StructuredStoryBody({ story }: { story: Story }) {
             const lines = trimmed.split("\n");
             const heading = lines[0];
             const content = lines.slice(1).join("\n");
-            const isFirstAdvantage = heading.startsWith("1.");
-            const isSecondAdvantage = heading.startsWith("2.");
+            const isFirstAdvantage = !isDisadvantage && heading.startsWith("1.");
+            const isSecondAdvantage = !isDisadvantage && heading.startsWith("2.");
 
             return (
               <div key={index} className="my-6">
-                <div className="rounded-2xl border border-emerald-200/80 bg-emerald-50/40 p-6">
-                  <h5 className="font-[Georgia] text-xl font-bold text-emerald-900 mb-3">
+                <div className={`rounded-2xl border p-6 ${
+                  isDisadvantage
+                    ? "border-rose-200/80 bg-rose-50/30"
+                    : "border-emerald-200/80 bg-emerald-50/40"
+                }`}>
+                  <h5 className={`mb-3 font-[Georgia] text-xl font-bold ${
+                    isDisadvantage ? "text-rose-950" : "text-emerald-900"
+                  }`}>
                     {heading}
                   </h5>
                   <p className="font-[Georgia] text-[1.05rem] leading-8 text-[#415e66]">
@@ -570,26 +584,39 @@ export function RishiLandingPage() {
                       </div>
 
                       {isPoem ? (
-                        <div className="grid gap-8 px-7 pb-10 sm:px-12 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
-                          <div className={`flex gap-3 ${story.images.length > 1 ? "h-full flex-col" : ""}`}>
-                            {story.images.slice(0, 3).map((image, index) => (
+                        <div className="px-7 pb-10 sm:px-12">
+                          {story.images.length === 1 ? (
+                            <>
                               <img
-                                key={image}
-                                src={image}
-                                alt={`${story.title} illustration ${index + 1}`}
-                                className={`w-full rounded-2xl border border-[#e8ded1]/80 shadow-sm ${
-                                  story.images.length === 1
-                                    ? "h-auto object-contain"
-                                    : "h-48 object-cover lg:h-auto lg:min-h-0 lg:flex-1"
-                                }`}
+                                src={story.images[0]}
+                                alt={`${story.title} illustration`}
+                                className="h-auto w-full rounded-2xl border border-[#e8ded1]/80 object-contain shadow-sm"
                               />
-                            ))}
-                          </div>
-                          <div className="flex flex-col justify-center max-w-2xl py-1">
-                            <p className="whitespace-pre-line font-[Georgia] text-[1.05rem] leading-8 text-[#52717a]">
-                              {story.body}
-                            </p>
-                          </div>
+                              <div className="mx-auto mt-8 max-w-2xl">
+                                <p className="whitespace-pre-line font-[Georgia] text-[1.05rem] leading-8 text-[#52717a]">
+                                  {story.body}
+                                </p>
+                              </div>
+                            </>
+                          ) : (
+                            <div className="grid gap-8 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
+                              <div className="flex h-full flex-col gap-3">
+                                {story.images.slice(0, 3).map((image, index) => (
+                                  <img
+                                    key={image}
+                                    src={image}
+                                    alt={`${story.title} illustration ${index + 1}`}
+                                    className="h-48 w-full rounded-2xl border border-[#e8ded1]/80 object-cover shadow-sm lg:h-auto lg:min-h-0 lg:flex-1"
+                                  />
+                                ))}
+                              </div>
+                              <div className="flex max-w-2xl flex-col justify-center py-1">
+                                <p className="whitespace-pre-line font-[Georgia] text-[1.05rem] leading-8 text-[#52717a]">
+                                  {story.body}
+                                </p>
+                              </div>
+                            </div>
+                          )}
                         </div>
                       ) : (
                         <StructuredStoryBody story={story} />

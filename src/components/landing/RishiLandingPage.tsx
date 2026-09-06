@@ -99,13 +99,24 @@ function StructuredStoryBody({ story }: { story: Story }) {
 
           if (trimmed === "DISADVANTAGES OF MOBILE PHONES") {
             return (
-              <div key={index} className="mt-12 mb-6 flex items-center gap-3 border-b-2 border-rose-400/60 pb-3">
-                <span className="grid size-9 place-items-center rounded-xl bg-rose-100 text-rose-700">
-                  <AlertTriangle className="size-5" />
-                </span>
-                <h4 className="font-[Georgia] text-2xl font-bold text-rose-950 tracking-tight">
-                  Disadvantages of Mobile Phones
-                </h4>
+              <div key={index} className="mt-12 mb-6">
+                <div className="flex items-center gap-3 border-b-2 border-rose-400/60 pb-3">
+                  <span className="grid size-9 place-items-center rounded-xl bg-rose-100 text-rose-700">
+                    <AlertTriangle className="size-5" />
+                  </span>
+                  <h4 className="font-[Georgia] text-2xl font-bold text-rose-950 tracking-tight">
+                    Disadvantages of Mobile Phones
+                  </h4>
+                </div>
+                {story.images[3] && (
+                  <div className="mt-6 overflow-hidden rounded-2xl border border-[#e8ded1] shadow-md">
+                    <img
+                      src={story.images[3]}
+                      alt="The benefits and risks of mobile-phone use"
+                      className="h-auto w-full object-cover"
+                    />
+                  </div>
+                )}
               </div>
             );
           }
@@ -226,15 +237,6 @@ function StructuredStoryBody({ story }: { story: Story }) {
               <p className="font-[Georgia] text-[1.05rem] leading-8 text-[#52717a]">
                 {trimmed}
               </p>
-              {index === 0 && story.images[3] && (
-                <div className="my-8 overflow-hidden rounded-2xl border border-[#e8ded1] shadow-md">
-                  <img
-                    src={story.images[3]}
-                    alt="Mobile phones connecting everyday life"
-                    className="h-72 w-full object-cover sm:h-96"
-                  />
-                </div>
-              )}
             </div>
           );
         })}
@@ -455,7 +457,7 @@ export function RishiLandingPage() {
             <div className="lg:grid lg:grid-cols-[280px_1fr] lg:gap-10 items-start">
               {/* Desktop Sticky Floating Distinguishable Story Index */}
               <nav className="hidden lg:block">
-                <div className="sticky top-24 rounded-2xl border border-[#e8ded1] bg-[#fffaf3]/95 p-4 shadow-sm backdrop-blur-md max-h-[calc(100vh-7rem)] overflow-y-auto">
+                <div className="fixed left-[max(1.5rem,calc((100vw-72rem)/2))] top-24 z-20 w-[280px] rounded-2xl border border-[#e8ded1] bg-[#fffaf3]/95 p-4 shadow-sm backdrop-blur-md max-h-[calc(100vh-7rem)] overflow-y-auto">
                   <div className="mb-3 flex items-center justify-between border-b border-[#e8ded1]/80 pb-2.5">
                     <p className="text-xs font-bold uppercase tracking-[0.18em] text-[#ef6c3b]">
                       Story Index
@@ -575,7 +577,7 @@ export function RishiLandingPage() {
                                 alt={`${story.title} illustration ${index + 1}`}
                                 className={`w-full rounded-2xl border border-[#e8ded1]/80 shadow-sm ${
                                   story.images.length === 1
-                                    ? "aspect-[4/5] bg-[#f1e5d5] object-contain lg:sticky lg:top-24"
+                                    ? "h-auto object-contain"
                                     : "h-48 object-cover lg:h-auto lg:min-h-0 lg:flex-1"
                                 }`}
                               />

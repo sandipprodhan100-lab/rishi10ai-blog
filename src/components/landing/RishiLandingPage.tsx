@@ -1,4 +1,4 @@
-import { useEffect, useState, useMemo } from "react";
+import { useEffect, useState, useMemo, useRef } from "react";
 import { Plane, Sparkles, BookOpen, Feather, Smartphone, AlertTriangle, CheckCircle2, ShieldAlert, HeartHandshake, ChevronDown } from "lucide-react";
 import { STORIES, Story } from "@/generated/stories";
 
@@ -356,6 +356,8 @@ export function RishiLandingPage() {
   const [dreams, setDreams] = useState("");
   const [activeSlug, setActiveSlug] = useState<string>("london-post");
   const [openCategory, setOpenCategory] = useState<string | null>(null);
+  const [isStoryIndexPinned, setIsStoryIndexPinned] = useState(false);
+  const storyIndexTriggerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     setDreams(window.localStorage.getItem("rishi-dreams") ?? "");
@@ -384,6 +386,21 @@ export function RishiLandingPage() {
       if (el) observer.observe(el);
     });
 
+    return () => observer.disconnect();
+  }, []);
+
+  useEffect(() => {
+    const trigger = storyIndexTriggerRef.current;
+    if (!trigger) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setIsStoryIndexPinned(!entry.isIntersecting && entry.boundingClientRect.top < 73);
+      },
+      { rootMargin: "-73px 0px 0px 0px", threshold: 0 }
+    );
+
+    observer.observe(trigger);
     return () => observer.disconnect();
   }, []);
 
@@ -506,10 +523,18 @@ export function RishiLandingPage() {
               </p>
             </div>
 
-            <nav
-              aria-label="Story index"
-              className="sticky top-[73px] z-20 -mx-5 mb-8 border-y border-[#e8ded1] bg-white/95 px-5 py-3 backdrop-blur-md sm:-mx-8 sm:px-8"
+            <div
+              ref={storyIndexTriggerRef}
+              className={isStoryIndexPinned ? (openCategory ? "mb-8 min-h-28" : "mb-8 min-h-[73px]") : ""}
             >
+              <nav
+                aria-label="Story index"
+                className={`z-20 border-y border-[#e8ded1] bg-white/95 px-5 py-3 backdrop-blur-md ${
+                  isStoryIndexPinned
+                    ? "fixed inset-x-0 top-[73px] shadow-md sm:px-8"
+                    : "sticky top-[73px] -mx-5 mb-8 sm:-mx-8 sm:px-8"
+                }`}
+              >
               <div className="mx-auto flex max-w-6xl items-center gap-4">
                 <div className="hidden shrink-0 border-r border-[#e8ded1] pr-4 sm:block">
                   <p className="text-xs font-bold uppercase tracking-[0.18em] text-[#ef6c3b]">
@@ -572,7 +597,8 @@ export function RishiLandingPage() {
                   ))}
                 </div>
               )}
-            </nav>
+              </nav>
+            </div>
 
             <div>
                 {/* London Post */}

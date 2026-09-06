@@ -459,7 +459,7 @@ export function RishiLandingPage() {
             <div className="lg:grid lg:grid-cols-[280px_1fr] lg:gap-10 items-start">
               {/* Desktop Sticky Floating Distinguishable Story Index */}
               <nav className="hidden lg:block">
-                <div className="fixed left-[max(1.5rem,calc((100vw-72rem)/2))] top-24 z-20 w-[280px] rounded-2xl border border-[#e8ded1] bg-[#fffaf3]/95 p-4 shadow-sm backdrop-blur-md max-h-[calc(100vh-7rem)] overflow-y-auto">
+                <div className="sticky top-24 max-h-[calc(100vh-7rem)] overflow-y-auto rounded-2xl border border-[#e8ded1] bg-[#fffaf3]/95 p-4 shadow-sm backdrop-blur-md">
                   <div className="mb-3 flex items-center justify-between border-b border-[#e8ded1]/80 pb-2.5">
                     <p className="text-xs font-bold uppercase tracking-[0.18em] text-[#ef6c3b]">
                       Story Index
